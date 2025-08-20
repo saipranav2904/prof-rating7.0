@@ -4,10 +4,12 @@
   <meta charset="UTF-8">
   <title>Professor Rating</title>
   <link rel="stylesheet" href="style.css">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+  <script src="https://kit.fontawesome.com/4f6a1a56cb.js" crossorigin="anonymous"></script>
 </head>
 <body>
   <div class="container">
-    <h1>Professor Rating</h1>
+    <h1>🌟 Professor Rating</h1>
     <form id="ratingForm">
       <label>Professor:</label>
       <select id="professor" required>
@@ -40,19 +42,40 @@
         <option value="CS101">CS101</option>
         <option value="MATH201">MATH201</option>
         <option value="ENG301">ENG301</option>
-        <option>AN F311</option>
-        <option>AN F313</option>
-        <option>BIO F101</option>
       </select>
 
-      <label>Teaching Rating (1-10):</label>
-      <input type="number" id="teaching" min="1" max="10" required>
+      <label>Teaching Rating:</label>
+      <select id="teaching" required>
+        <option value="">-- Rate --</option>
+        <option value="10">⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐ (10)</option>
+        <option value="9">⭐⭐⭐⭐⭐⭐⭐⭐⭐ (9)</option>
+        <option value="8">⭐⭐⭐⭐⭐⭐⭐⭐ (8)</option>
+        <option value="7">⭐⭐⭐⭐⭐⭐⭐ (7)</option>
+        <option value="6">⭐⭐⭐⭐⭐⭐ (6)</option>
+        <option value="5">⭐⭐⭐⭐⭐ (5)</option>
+        <option value="4">⭐⭐⭐⭐ (4)</option>
+        <option value="3">⭐⭐⭐ (3)</option>
+        <option value="2">⭐⭐ (2)</option>
+        <option value="1">⭐ (1)</option>
+      </select>
 
-      <label>Grading Rating (1-10):</label>
-      <input type="number" id="grading" min="1" max="10" required>
+      <label>Grading Rating:</label>
+      <select id="grading" required>
+        <option value="">-- Rate --</option>
+        <option value="10">⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐ (10)</option>
+        <option value="9">⭐⭐⭐⭐⭐⭐⭐⭐⭐ (9)</option>
+        <option value="8">⭐⭐⭐⭐⭐⭐⭐⭐ (8)</option>
+        <option value="7">⭐⭐⭐⭐⭐⭐⭐ (7)</option>
+        <option value="6">⭐⭐⭐⭐⭐⭐ (6)</option>
+        <option value="5">⭐⭐⭐⭐⭐ (5)</option>
+        <option value="4">⭐⭐⭐⭐ (4)</option>
+        <option value="3">⭐⭐⭐ (3)</option>
+        <option value="2">⭐⭐ (2)</option>
+        <option value="1">⭐ (1)</option>
+      </select>
 
       <label>Review (optional):</label>
-      <textarea id="review"></textarea>
+      <textarea id="review" placeholder="Write your experience..."></textarea>
 
       <button type="submit">Submit Rating</button>
     </form>

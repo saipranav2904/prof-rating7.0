@@ -1,90 +1,102 @@
-body {
-  font-family: 'Poppins', sans-serif;
-  background: #f0f7f8;
+body, html {
   margin: 0;
   padding: 0;
+  font-family: 'Poppins', sans-serif;
 }
+
+.sky-background {
+  background: linear-gradient(to bottom, #87ceeb, #1c1f4a);
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  padding: 40px;
+  position: relative;
+  overflow: hidden;
+  color: #fff;
+}
+
+/* floating stars */
+.sky-background::before {
+  content: "✨ 🌟 ⭐ ✨";
+  font-size: 2rem;
+  position: absolute;
+  top: 10%;
+  left: 10%;
+  animation: twinkle 5s infinite alternate;
+}
+
+@keyframes twinkle {
+  from { opacity: 0.5; }
+  to { opacity: 1; }
+}
+
 .container {
-  width: 60%;
-  margin: 40px auto;
+  width: 600px;
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(12px);
+  border-radius: 15px;
   padding: 30px;
-  background: #ffffff;
-  border-radius: 14px;
-  box-shadow: 0px 6px 18px rgba(0,0,0,0.1);
+  box-shadow: 0 8px 20px rgba(0,0,0,0.4);
 }
+
 h1 {
   text-align: center;
-  color: #2c3e50;
-  margin-bottom: 25px;
+  margin-bottom: 20px;
+  color: #ffdd57;
 }
+
 label {
-  display: block;
-  margin-top: 15px;
   font-weight: 600;
-  color: #444;
+  margin-top: 10px;
+  display: block;
 }
-select, textarea {
+
+select, input, textarea {
   width: 100%;
   padding: 10px;
-  margin-top: 6px;
+  margin-top: 5px;
   border-radius: 8px;
-  border: 1px solid #ccc;
+  border: none;
   outline: none;
-  transition: border 0.3s;
-  background: #fafafa;
 }
-select:focus, textarea:focus {
-  border: 1px solid #4CAF50;
-}
-textarea {
-  resize: none;
-  height: 80px;
-}
+
 button {
   width: 100%;
   margin-top: 20px;
   padding: 12px;
-  background: #4CAF50;
+  background: #ff6f61;
   color: white;
   border: none;
   border-radius: 8px;
   font-size: 16px;
   cursor: pointer;
-  transition: background 0.3s;
+  transition: 0.3s;
 }
+
 button:hover {
-  background: #43a047;
+  background: #ff3b2f;
 }
-.result {
-  margin-top: 35px;
-  padding: 20px;
-  background: #f9f9f9;
-  border-radius: 10px;
-}
-.bar-container {
-  background: #ddd;
-  border-radius: 10px;
+
+.result-bar {
+  background: #fff;
+  border-radius: 8px;
   overflow: hidden;
-  margin: 6px 0 15px 0;
+  margin: 8px 0;
 }
-.bar {
+
+.result-fill {
   height: 20px;
-  background: linear-gradient(to right, #ffcc00, #ff9900);
-  text-align: center;
-  color: white;
+  background: linear-gradient(90deg, #ffdd57, #ff6f61);
+  text-align: right;
+  color: #000;
   font-size: 12px;
-  line-height: 20px;
+  padding-right: 5px;
 }
-.stars {
-  margin: 5px 0;
-  color: #ffb400;
-  font-size: 16px;
-}
-.review-box {
+
+.review-card {
+  background: rgba(255,255,255,0.2);
+  border-radius: 10px;
+  padding: 10px;
   margin: 10px 0;
-  padding: 10px 14px;
-  background: #eef6f9;
-  border-left: 4px solid #4CAF50;
-  border-radius: 6px;
-  font-size: 14px;
 }

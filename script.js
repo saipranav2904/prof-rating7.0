@@ -20,45 +20,36 @@ document.getElementById("ratingForm").addEventListener("submit", async (e) => {
   loadRatings();
 });
 
-// Load averages + reviews
+// Fetch & Display Ratings
 async function loadRatings() {
   let res = await fetch(scriptURL);
   let ratings = await res.json();
-
-  let output = "<h2>🌟 Average Ratings</h2>";
-  let reviewOutput = "<h2>📝 Student Reviews</h2>";
+  let output = "<h2>⭐ Ratings & Reviews ⭐</h2>";
 
   for (let prof in ratings) {
-    output += `<h3>${prof}</h3>`;
     for (let course in ratings[prof]) {
-      let tAvg = avg(ratings[prof][course].teaching).toFixed(1);
-      let gAvg = avg(ratings[prof][course].grading).toFixed(1);
+      let tArr = ratings[prof][course].teaching;
+      let gArr = ratings[prof][course].grading;
+      let reviews = ratings[prof][course].reviews || [];
+
+      let tAvg = (tArr.reduce((a,b)=>a+b,0) / tArr.length).toFixed(1);
+      let gAvg = (gArr.reduce((a,b)=>a+b,0) / gArr.length).toFixed(1);
 
       output += `
-        <p><b>${course}</b></p>
-        <div class="result-bar"><div class="result-fill" style="width:${tAvg*10}%">Teaching ⭐ ${tAvg}/10</div></div>
-        <div class="result-bar"><div class="result-fill" style="width:${gAvg*10}%">Grading ⭐ ${gAvg}/10</div></div>
+        <div class="result-card">
+          <h3>${prof} - ${course}</h3>
+          <p>Teaching: ⭐ ${tAvg}/10</p>
+          <div class="bar-container"><div class="bar" style="width:${tAvg*10}%"></div></div>
+          <p>Grading: ⭐ ${gAvg}/10</p>
+          <div class="bar-container"><div class="bar" style="width:${gAvg*10}%"></div></div>
+          <h4>Reviews:</h4>
+          ${reviews.length > 0 ? reviews.map(r => `<p class="review-text">💬 "${r}"</p>`).join("") : "<p class='review-text'>No reviews yet.</p>"}
+        </div>
       `;
-
-      ratings[prof][course].reviews.forEach(r => {
-        reviewOutput += `
-          <div class="review-card">
-            <p><b>${prof} - ${course}</b></p>
-            <p>Teaching: ${"⭐".repeat(r.teaching)}</p>
-            <p>Grading: ${"⭐".repeat(r.grading)}</p>
-            <p>"${r.review}"</p>
-          </div>
-        `;
-      });
     }
   }
 
   document.getElementById("results").innerHTML = output;
-  document.getElementById("reviews").innerHTML = reviewOutput;
-}
-
-function avg(arr) {
-  return arr.reduce((a,b)=>a+b,0)/arr.length;
 }
 
 loadRatings();

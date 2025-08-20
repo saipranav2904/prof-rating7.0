@@ -1,7 +1,6 @@
 // Replace this with your Google Apps Script Web App URL
 const scriptURL = "https://script.google.com/macros/s/AKfycbx2wJ7jDboiFSyCQOvb57oC1eYYXSHipsxAKzVy7kkU99YlhsIIIVK3dUOP4tohCyFY/exec";
 
-// Handle form submission
 document.getElementById("ratingForm").addEventListener("submit", async (e) => {
   e.preventDefault();
 
@@ -18,49 +17,49 @@ document.getElementById("ratingForm").addEventListener("submit", async (e) => {
     body: JSON.stringify(data)
   });
 
-  loadRatings(); // Refresh averages
-  e.target.reset(); // Clear form
+  loadRatings();
 });
 
-// Load ratings and display averages + reviews
+// Load averages + reviews
 async function loadRatings() {
   let res = await fetch(scriptURL);
   let ratings = await res.json();
-  let output = "<h3>⭐ Ratings & Reviews</h3>";
+
+  let output = "<h2>🌟 Average Ratings</h2>";
+  let reviewOutput = "<h2>📝 Student Reviews</h2>";
 
   for (let prof in ratings) {
-    output += `<h2>${prof}</h2>`;
+    output += `<h3>${prof}</h3>`;
     for (let course in ratings[prof]) {
-      let teachingArr = ratings[prof][course].teaching;
-      let gradingArr = ratings[prof][course].grading;
+      let tAvg = avg(ratings[prof][course].teaching).toFixed(1);
+      let gAvg = avg(ratings[prof][course].grading).toFixed(1);
 
-      let tAvg = (teachingArr.reduce((a,b)=>a+b,0) / teachingArr.length).toFixed(1);
-      let gAvg = (gradingArr.reduce((a,b)=>a+b,0) / gradingArr.length).toFixed(1);
+      output += `
+        <p><b>${course}</b></p>
+        <div class="result-bar"><div class="result-fill" style="width:${tAvg*10}%">Teaching ⭐ ${tAvg}/10</div></div>
+        <div class="result-bar"><div class="result-fill" style="width:${gAvg*10}%">Grading ⭐ ${gAvg}/10</div></div>
+      `;
 
-      output += `<h4>${course}</h4>`;
-
-      // Teaching Rating Bar + Stars
-      output += `<p>Teaching Rating: ${tAvg}/10</p>
-                 <div class="bar-container"><div class="bar" style="width:${tAvg*10}%">${tAvg}</div></div>
-                 <div class="stars">${"⭐".repeat(Math.round(tAvg))}</div>`;
-
-      // Grading Rating Bar + Stars
-      output += `<p>Grading Rating: ${gAvg}/10</p>
-                 <div class="bar-container"><div class="bar" style="width:${gAvg*10}%">${gAvg}</div></div>
-                 <div class="stars">${"⭐".repeat(Math.round(gAvg))}</div>`;
-
-      // Reviews
-      if (ratings[prof][course].reviews && ratings[prof][course].reviews.length > 0) {
-        output += "<h5>Student Reviews:</h5>";
-        ratings[prof][course].reviews.forEach(r => {
-          output += `<div class="review-box">${r}</div>`;
-        });
-      }
+      ratings[prof][course].reviews.forEach(r => {
+        reviewOutput += `
+          <div class="review-card">
+            <p><b>${prof} - ${course}</b></p>
+            <p>Teaching: ${"⭐".repeat(r.teaching)}</p>
+            <p>Grading: ${"⭐".repeat(r.grading)}</p>
+            <p>"${r.review}"</p>
+          </div>
+        `;
+      });
     }
   }
 
   document.getElementById("results").innerHTML = output;
+  document.getElementById("reviews").innerHTML = reviewOutput;
 }
 
-// Initial load
+function avg(arr) {
+  return arr.reduce((a,b)=>a+b,0)/arr.length;
+}
+
 loadRatings();
+

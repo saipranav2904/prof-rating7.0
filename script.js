@@ -26,7 +26,7 @@ document.getElementById("ratingForm").addEventListener("submit", async (e) => {
 async function loadRatings() {
   let res = await fetch(scriptURL);
   let ratings = await res.json();
-  let output = "<h3>Ratings & Reviews</h3>";
+  let output = "<h3>⭐ Ratings & Reviews</h3>";
 
   for (let prof in ratings) {
     output += `<h2>${prof}</h2>`;
@@ -39,13 +39,15 @@ async function loadRatings() {
 
       output += `<h4>${course}</h4>`;
 
-      // Teaching Rating Bar
+      // Teaching Rating Bar + Stars
       output += `<p>Teaching Rating: ${tAvg}/10</p>
-                 <div class="bar-container"><div class="bar" style="width:${tAvg*10}%">${tAvg}</div></div>`;
+                 <div class="bar-container"><div class="bar" style="width:${tAvg*10}%">${tAvg}</div></div>
+                 <div class="stars">${"⭐".repeat(Math.round(tAvg))}</div>`;
 
-      // Grading Rating Bar
+      // Grading Rating Bar + Stars
       output += `<p>Grading Rating: ${gAvg}/10</p>
-                 <div class="bar-container"><div class="bar" style="width:${gAvg*10}%">${gAvg}</div></div>`;
+                 <div class="bar-container"><div class="bar" style="width:${gAvg*10}%">${gAvg}</div></div>
+                 <div class="stars">${"⭐".repeat(Math.round(gAvg))}</div>`;
 
       // Reviews
       if (ratings[prof][course].reviews && ratings[prof][course].reviews.length > 0) {

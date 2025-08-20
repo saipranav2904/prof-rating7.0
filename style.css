@@ -1,102 +1,96 @@
-body, html {
+body {
+  font-family: 'Poppins', sans-serif;
+  background: linear-gradient(to bottom, #87ceeb, #1e3c72);
+  color: #222;
   margin: 0;
   padding: 0;
-  font-family: 'Poppins', sans-serif;
 }
 
-.sky-background {
-  background: linear-gradient(to bottom, #87ceeb, #1c1f4a);
-  min-height: 100vh;
-  display: flex;
-  justify-content: center;
-  align-items: flex-start;
-  padding: 40px;
-  position: relative;
-  overflow: hidden;
-  color: #fff;
+h2, h3, h4 {
+  color: #1b2a49;
 }
 
-/* floating stars */
-.sky-background::before {
-  content: "✨ 🌟 ⭐ ✨";
-  font-size: 2rem;
-  position: absolute;
-  top: 10%;
-  left: 10%;
-  animation: twinkle 5s infinite alternate;
-}
-
-@keyframes twinkle {
-  from { opacity: 0.5; }
-  to { opacity: 1; }
-}
-
-.container {
-  width: 600px;
-  background: rgba(255, 255, 255, 0.1);
-  backdrop-filter: blur(12px);
+form {
+  background: white;
+  padding: 20px;
+  margin: 20px auto;
+  max-width: 600px;
   border-radius: 15px;
-  padding: 30px;
-  box-shadow: 0 8px 20px rgba(0,0,0,0.4);
+  box-shadow: 0 8px 20px rgba(0,0,0,0.15);
 }
 
-h1 {
-  text-align: center;
-  margin-bottom: 20px;
-  color: #ffdd57;
-}
-
-label {
-  font-weight: 600;
-  margin-top: 10px;
-  display: block;
-}
-
-select, input, textarea {
+form select, form textarea, form button {
   width: 100%;
   padding: 10px;
-  margin-top: 5px;
-  border-radius: 8px;
-  border: none;
-  outline: none;
-}
-
-button {
-  width: 100%;
-  margin-top: 20px;
-  padding: 12px;
-  background: #ff6f61;
-  color: white;
-  border: none;
-  border-radius: 8px;
-  font-size: 16px;
-  cursor: pointer;
-  transition: 0.3s;
-}
-
-button:hover {
-  background: #ff3b2f;
-}
-
-.result-bar {
-  background: #fff;
-  border-radius: 8px;
-  overflow: hidden;
   margin: 8px 0;
+  border: 1px solid #ddd;
+  border-radius: 10px;
 }
 
-.result-fill {
-  height: 20px;
-  background: linear-gradient(90deg, #ffdd57, #ff6f61);
-  text-align: right;
-  color: #000;
-  font-size: 12px;
-  padding-right: 5px;
+form button {
+  background: linear-gradient(45deg, #00c6ff, #0072ff);
+  color: white;
+  font-size: 1em;
+  font-weight: bold;
+  cursor: pointer;
+  border: none;
+  transition: 0.3s ease;
+}
+
+form button:hover {
+  background: linear-gradient(45deg, #0072ff, #00c6ff);
+  transform: scale(1.05);
 }
 
 .review-card {
-  background: rgba(255,255,255,0.2);
-  border-radius: 10px;
-  padding: 10px;
+  background: white;
+  padding: 20px;
+  margin: 15px auto;
+  border-radius: 15px;
+  max-width: 700px;
+  box-shadow: 0 6px 15px rgba(0,0,0,0.15);
+}
+
+.rating-bar {
+  background: #e0f0ff;
+  border-radius: 8px;
+  height: 12px;
   margin: 10px 0;
+  overflow: hidden;
+}
+
+.rating-fill {
+  background: linear-gradient(90deg, #00c6ff, #0072ff);
+  height: 100%;
+  transition: width 0.4s ease;
+}
+
+.reviews-list {
+  margin-top: 10px;
+}
+
+.single-review {
+  background: #f0f9ff;
+  padding: 12px;
+  border-left: 5px solid #0072ff;
+  margin-bottom: 10px;
+  border-radius: 10px;
+}
+
+.single-review p {
+  margin: 0;
+  font-style: italic;
+  color: #333;
+}
+
+.single-review span {
+  font-size: 0.9em;
+  color: #444;
+}
+
+.star-background {
+  position: absolute;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background: url('https://www.transparenttextures.com/patterns/stardust.png');
+  opacity: 0.2;
 }

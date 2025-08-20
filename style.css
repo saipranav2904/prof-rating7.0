@@ -1,20 +1,21 @@
 body {
   font-family: 'Poppins', sans-serif;
-  background: #f5f7fa;
+  background: #f0f7f8;
   margin: 0;
   padding: 0;
 }
 .container {
-  width: 55%;
-  margin: 50px auto;
-  padding: 25px;
-  background: #fff;
+  width: 60%;
+  margin: 40px auto;
+  padding: 30px;
+  background: #ffffff;
   border-radius: 14px;
-  box-shadow: 0px 6px 18px rgba(0,0,0,0.15);
+  box-shadow: 0px 6px 18px rgba(0,0,0,0.1);
 }
 h1 {
   text-align: center;
   color: #2c3e50;
+  margin-bottom: 25px;
 }
 label {
   display: block;
@@ -22,7 +23,7 @@ label {
   font-weight: 600;
   color: #444;
 }
-select, input, textarea {
+select, textarea {
   width: 100%;
   padding: 10px;
   margin-top: 6px;
@@ -30,9 +31,14 @@ select, input, textarea {
   border: 1px solid #ccc;
   outline: none;
   transition: border 0.3s;
+  background: #fafafa;
 }
-select:focus, input:focus, textarea:focus {
+select:focus, textarea:focus {
   border: 1px solid #4CAF50;
+}
+textarea {
+  resize: none;
+  height: 80px;
 }
 button {
   width: 100%;
@@ -50,8 +56,8 @@ button:hover {
   background: #43a047;
 }
 .result {
-  margin-top: 30px;
-  padding: 15px;
+  margin-top: 35px;
+  padding: 20px;
   background: #f9f9f9;
   border-radius: 10px;
 }
@@ -59,20 +65,26 @@ button:hover {
   background: #ddd;
   border-radius: 10px;
   overflow: hidden;
-  margin: 5px 0 15px 0;
+  margin: 6px 0 15px 0;
 }
 .bar {
   height: 20px;
-  background: #4CAF50;
+  background: linear-gradient(to right, #ffcc00, #ff9900);
   text-align: center;
   color: white;
   font-size: 12px;
   line-height: 20px;
 }
+.stars {
+  margin: 5px 0;
+  color: #ffb400;
+  font-size: 16px;
+}
 .review-box {
-  margin: 8px 0;
-  padding: 8px 12px;
-  background: #eef3f7;
+  margin: 10px 0;
+  padding: 10px 14px;
+  background: #eef6f9;
   border-left: 4px solid #4CAF50;
   border-radius: 6px;
+  font-size: 14px;
 }
